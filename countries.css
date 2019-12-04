@@ -1,31 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Righteous', cursive;
 }
 
 div#title {
     display: inline-block;
-    height: 6em;
     width: 100vw;
+    height: 50px;
+    padding-top: 15px;
     position: relative;
     text-align: center;
-    align-content: center;
-    background-color: tan;
+    align-content: bottom;
+    background-color: wheat;
+}
+
+div#title img {
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-left: 2em;
 }
 
 div#title h1 {
-    position: absolute;
-    left: 4em;
+    float: left;
+    margin-left: 0.5em;
+    
 }
 
-div#title aside {
-    position: absolute;
-    right: 2em;
+div#title address {
+    float: right;
+    margin-right: 2em;
+    position: relative;
+    top: 8px;
+    color: rgb(148, 148, 148);
 }
 
 header>div {
     display: inline-block;
     width: 100vw;
-    height: 4em;
-    background-color: lightslategray;
+    background-color: tan;
+    height: 2em;
+    padding-top: 12px;
+}
+
+header>div>form {
+    float: left;
+    margin-left: 2em;
+}
+
+header>div>form>input[type=search] {
+    width: 18vw;
+}
+
+header>div>form>input[type=submit] {
+    width: 6em;
+}
+
+header>div>label {
+    float: right;
+    margin-right: 2em;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    background-color: tan;
+    width: 100vw;
+    height: 2em;
+}
+
+footer>div {
+    margin-left: 1em;
 }
