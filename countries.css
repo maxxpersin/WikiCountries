@@ -3,16 +3,23 @@
     margin: 0;
     padding: 0;
     font-family: 'Righteous', cursive;
+    
 }
 
+/**:hover{
+    border:2px;
+    color:purple;
+    border-style: solid;
+}*/
+header{
+    background-color: wheat;
+}
 div#title {
     display: inline-block;
     width: 100vw;
     height: 50px;
     padding-top: 15px;
-    position: relative;
-    text-align: center;
-    align-content: bottom;
+    
     background-color: wheat;
 }
 
@@ -26,7 +33,6 @@ div#title img {
 div#title h1 {
     float: left;
     margin-left: 0.5em;
-    
 }
 
 div#title address {
