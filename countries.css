@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+div#title {
+    display: inline-block;
+    height: 6em;
+    width: 100vw;
+    position: relative;
+    text-align: center;
+    align-content: center;
+    background-color: tan;
+}
+
+div#title h1 {
+    position: absolute;
+    left: 4em;
+}
+
+div#title aside {
+    position: absolute;
+    right: 2em;
+}
+
+header>div {
+    display: inline-block;
+    width: 100vw;
+    height: 4em;
+    background-color: lightslategray;
+}
