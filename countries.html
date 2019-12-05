@@ -17,7 +17,7 @@
         <div>
             <form id="search-form">
                 <input type="search" name="q" placeholder="Country name (or partial name)">
-                <input type="submit" name="submit" value="Search">
+                <input onlick="search(evt)" type="submit" name="submit" value="Search">
             </form>
             <label>
                 <input type="checkbox" name="show-links" checked>
@@ -31,6 +31,9 @@
     <footer>
         <div>&copy; Countries</div>
     </footer>
+    <script>
+        window.onload = setEvents;
+    </script>
 </body>
 
 </html>
