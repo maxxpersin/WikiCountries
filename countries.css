@@ -71,13 +71,18 @@ header div#search>div#search-btn {
     /*padding: 5px 15px;*/
     margin-left: 20px;
     width: 6em;
-    height: 20px;
+    height: 18px;
     font-size: 0.75em;
 }
 header div#search>div#search-btn:hover {
     cursor: pointer;
     background-color: black;
     color: white;
+}
+
+header div#search select#country-choices {
+    margin-left: 20px;
+    height: 20px;
 }
 
 header>div>label {
