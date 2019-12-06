@@ -51,17 +51,33 @@ header>div {
     padding-top: 12px;
 }
 
-header>div>form {
+header div#search {
     float: left;
     margin-left: 2em;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
 }
 
-header>div>form>input[type=search] {
+header div#search>input[type=search] {
     width: 18vw;
+    height: 20px;
 }
 
-header>div>form>input[type=submit] {
+header div#search>div#search-btn {
+    background-color: white;
+   /* border-radius: 10%;*/
+    border: black solid 1px;
+    /*padding: 5px 15px;*/
+    margin-left: 20px;
     width: 6em;
+    height: 20px;
+    font-size: 0.75em;
+}
+header div#search>div#search-btn:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
 }
 
 header>div>label {

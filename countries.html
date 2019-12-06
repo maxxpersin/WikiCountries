@@ -5,6 +5,7 @@
     <title>WikiCountries</title>
     <link rel="stylesheet" type="text/css" href="countries.css">
     <script src="countries.js"></script>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
 </head>
 
 <body>
@@ -15,10 +16,10 @@
             <address>persin.maxx@uwlax.edu</address>
         </div>
         <div>
-            <form id="search-form">
-                <input type="search" name="q" placeholder="Country name (or partial name)">
-                <input onlick="search(evt)" type="submit" name="submit" value="Search">
-            </form>
+            <div id="search">
+                <input id="input" type="search" name="q" placeholder="Country name (or partial name)">
+                <div id="search-btn">Search</div>
+            </div>
             <label>
                 <input type="checkbox" name="show-links" checked>
                 Show wiki links
