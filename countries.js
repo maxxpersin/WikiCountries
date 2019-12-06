@@ -1,4 +1,8 @@
 function addDropDown(obj) {
+    if (obj.length === 0) {
+        alert('No Countries');
+        return;
+    }
     let container = document.getElementById('search');
 
     if (document.getElementById('country-choices')) {
@@ -8,7 +12,7 @@ function addDropDown(obj) {
     let dropDown = document.createElement("select");
     dropDown.id = 'country-choices';
     container.appendChild(dropDown);
-    
+
     obj.forEach(country => {
         let item = document.createElement('option');
         item.value = country.name;
@@ -16,6 +20,12 @@ function addDropDown(obj) {
         item.appendChild(text);
         dropDown.appendChild(item);
     });
+
+    let addCountryBtn = document.createElement('div');
+    addCountryBtn.id = 'save';
+    addCountryBtn.appendChild(document.createTextNode('Save'));
+    addCountryBtn.className = 'btn';
+    container.appendChild(addCountryBtn);
 }
 
 function search(evt) {
@@ -31,7 +41,8 @@ function search(evt) {
             success: function (obj) {
                 console.log(obj);
                 addDropDown(obj);
-            }
+            },
+            error: noCountriesAlert
         });
     } else {
         $.ajax({
@@ -44,10 +55,25 @@ function search(evt) {
             success: function (obj) {
                 console.log(obj);
                 addDropDown(obj);
-            }
+            },
+            error: noCountriesAlert
         });
     }
 
+}
+
+function noCountriesAlert() {
+    let container = document.getElementById('search');
+
+    if (document.getElementById('country-choices')) {
+        container.removeChild(document.getElementById('country-choices'));
+    }
+
+    if (document.getElementById('save')) {
+        container.removeChild(document.getElementById('save'));
+    }
+
+    alert('No Countries');
 }
 
 var setEvents = function () {

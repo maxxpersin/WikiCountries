@@ -64,7 +64,7 @@ header div#search>input[type=search] {
     height: 20px;
 }
 
-header div#search>div#search-btn {
+header div#search>div.btn {
     background-color: white;
    /* border-radius: 10%;*/
     border: black solid 1px;
@@ -74,7 +74,7 @@ header div#search>div#search-btn {
     height: 18px;
     font-size: 0.75em;
 }
-header div#search>div#search-btn:hover {
+header div#search>div.btn:hover {
     cursor: pointer;
     background-color: black;
     color: white;
