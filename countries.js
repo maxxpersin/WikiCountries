@@ -26,6 +26,21 @@ function addDropDown(obj) {
     addCountryBtn.appendChild(document.createTextNode('Save'));
     addCountryBtn.className = 'btn';
     container.appendChild(addCountryBtn);
+
+    addCountryBtn.addEventListener('click', saveCountry);
+}
+
+function saveCountry(evt) {
+    let selected = document.getElementById('country-choices');
+    //TODO get selected item, send it thru AJAX request
+    
+    $.ajax({
+        url: 'https://restcountries.eu/rest/v2/alpha/' + selected,
+        method: 'GET',
+        success: function (obj) {
+            console.log(obj);
+        }
+    });
 }
 
 function search(evt) {
@@ -76,7 +91,7 @@ function noCountriesAlert() {
     alert('No Countries');
 }
 
-var setEvents = function () {
+function setEvents() {
     let submit = document.getElementById('search-btn')
     console.log(submit);
     submit.addEventListener('click', search);
