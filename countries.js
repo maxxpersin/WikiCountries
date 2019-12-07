@@ -33,9 +33,12 @@ function addDropDown(obj) {
 function saveCountry(evt) {
     let selected = document.getElementById('country-choices');
     //TODO get selected item, send it thru AJAX request
+    selected = selected.options[selected.selectedIndex].value;
+    selected = selected.split(' ').join('%20');
+    console.log(selected);
     
     $.ajax({
-        url: 'https://restcountries.eu/rest/v2/alpha/' + selected,
+        url: 'https://restcountries.eu/rest/v2/name/' + selected + '?fullText=true',
         method: 'GET',
         success: function (obj) {
             console.log(obj);
