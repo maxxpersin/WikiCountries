@@ -66,7 +66,7 @@ function addCardHeadElements(card, cardHead, obj) {
     let infoTable = document.createElement('table');
     populateTable(infoTable, 'population', obj);
     populateTable(infoTable, 'nativeName', obj);
-    populateTable(infoTable, 'countryCode', obj);
+    populateTable(infoTable, 'numericCode', obj);
     populateTable(infoTable, 'callingCodes', obj);
     populateTable(infoTable, 'region', obj);
     populateTable(infoTable, 'subregion', obj);
