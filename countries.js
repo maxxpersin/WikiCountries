@@ -38,7 +38,7 @@ function addCountryCard(obj) {
     document.getElementsByClassName('container')[0].appendChild(card);
 
     let cardHead = document.createElement('div');
-    cardHead.class = 'card-head';
+    cardHead.className = 'card-head';
     card.appendChild(cardHead);
     addCardHeadElements(card, cardHead, obj);
 
@@ -64,23 +64,23 @@ function addCardHeadElements(card, cardHead, obj) {
     cardHead.appendChild(flag);
 
     let infoTable = document.createElement('table');
-    populateTable(infoTable, 'population', obj);
-    populateTable(infoTable, 'nativeName', obj);
-    populateTable(infoTable, 'numericCode', obj);
-    populateTable(infoTable, 'callingCodes', obj);
-    populateTable(infoTable, 'region', obj);
-    populateTable(infoTable, 'subregion', obj);
-    populateTable(infoTable, 'capital', obj);
+    populateTable(infoTable, 'Population', 'population', obj);
+    populateTable(infoTable, 'Native Name', 'nativeName', obj);
+    populateTable(infoTable, 'Country Code', 'alpha3Code', obj);
+    populateTable(infoTable, 'Calling Codes', 'callingCodes', obj);
+    populateTable(infoTable, 'Region', 'region', obj);
+    populateTable(infoTable, 'Sub-Region', 'subregion', obj);
+    populateTable(infoTable, 'Capital', 'capital', obj);
 
     cardHead.appendChild(infoTable);
 }
 
-function populateTable(infoTable, attr, obj) {
+function populateTable(infoTable, attrName, attr, obj) {
     let tr = document.createElement('tr');
     let th = document.createElement('th');
     let td = document.createElement('td');
     tr.appendChild(th);
-    th.appendChild(document.createTextNode(attr));
+    th.appendChild(document.createTextNode(attrName));
     td.appendChild(document.createTextNode(obj[attr]));
     tr.appendChild(td);
     infoTable.appendChild(tr);
@@ -91,7 +91,7 @@ function saveCountry(evt) {
     selected = selected.options[selected.selectedIndex].value;
     selected = selected.toLowerCase();
     selected = selected.split(' ').join('%20');
-    
+
     $.ajax({
         url: 'https://restcountries.eu/rest/v2/name/' + selected + '?fullText=true',
         method: 'GET',
