@@ -45,6 +45,13 @@ function addCountryCard(obj) {
     let wikiArticles = document.createElement('div');
     wikiArticles.class = 'wiki-articles';
     card.appendChild(wikiArticles);
+
+    let check = document.getElementById('show-wiki');
+    if (!check.checked) {
+        wikiArticles.style.display = 'hidden';
+    } 
+
+    addWikiElements(card, wikiArticles, obj);
     //TODO add styling and proper html structure to cards
     // for (let key in obj) {
     //     let container = document.createElement('div');
@@ -52,6 +59,12 @@ function addCountryCard(obj) {
     //     container.appendChild(text);
     //     card.appendChild(container);
     // }
+}
+
+function addWikiElements(card, wikiArticles, obj) {
+    let head = document.createElement('h1');
+    head.appendChild(document.createTextNode('Wikipedia Articles'));
+    wikiArticles.appendChild(head);
 }
 
 function addCardHeadElements(card, cardHead, obj) {
@@ -79,6 +92,7 @@ function addCardHeadElements(card, cardHead, obj) {
     populateTable(infoTable, 'Capital', 'capital', obj);
 
     cardHead.appendChild(infoTable);
+
 }
 
 function deleteCard(evt) {
@@ -92,7 +106,11 @@ function populateTable(infoTable, attrName, attr, obj) {
     let td = document.createElement('td');
     tr.appendChild(th);
     th.appendChild(document.createTextNode(attrName));
-    td.appendChild(document.createTextNode(obj[attr]));
+    if (attrName === 'Population') {
+        td.appendChild(document.createTextNode(obj[attr].toLocaleString()))
+    } else {
+        td.appendChild(document.createTextNode(obj[attr]));
+    }
     tr.appendChild(td);
     infoTable.appendChild(tr);
 }
