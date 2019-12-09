@@ -7,6 +7,7 @@ function addDropDown(obj) {
 
     if (document.getElementById('country-choices')) {
         container.removeChild(document.getElementById('country-choices'));
+        container.removeChild(document.getElementById('save'));
     }
 
     let dropDown = document.createElement("select");
@@ -30,18 +31,30 @@ function addDropDown(obj) {
     addCountryBtn.addEventListener('click', saveCountry);
 }
 
+function addCountryCard(obj) {
+    let card = document.createElement('div');
+    document.getElementsByClassName('container')[0].appendChild(card);
+
+    //TODO add styling and proper html structure to cards
+    for (let key in obj) {
+        let container = document.createElement('div');
+        let text = document.createTextNode(key + ": " + obj[key]);
+        container.appendChild(text);
+        card.appendChild(container);
+    }
+}
+
 function saveCountry(evt) {
     let selected = document.getElementById('country-choices');
-    //TODO get selected item, send it thru AJAX request
     selected = selected.options[selected.selectedIndex].value;
+    selected = selected.toLowerCase();
     selected = selected.split(' ').join('%20');
-    console.log(selected);
     
     $.ajax({
         url: 'https://restcountries.eu/rest/v2/name/' + selected + '?fullText=true',
         method: 'GET',
         success: function (obj) {
-            console.log(obj);
+            addCountryCard(obj[0]);
         }
     });
 }
@@ -53,11 +66,9 @@ function search(evt) {
             url: 'https://restcountries.eu/rest/v2/name/' + query,
             method: 'GET',
             data: {
-                // alpha2code: query,
                 fields: 'name;alpha2code'
             },
             success: function (obj) {
-                console.log(obj);
                 addDropDown(obj);
             },
             error: noCountriesAlert
@@ -67,11 +78,9 @@ function search(evt) {
             url: 'https://restcountries.eu/rest/v2/name/' + query,
             method: 'GET',
             data: {
-                //alpha3code: query.substring(0, 3),
                 fields: 'name;alpha3code'
             },
             success: function (obj) {
-                console.log(obj);
                 addDropDown(obj);
             },
             error: noCountriesAlert
@@ -96,8 +105,6 @@ function noCountriesAlert() {
 
 function setEvents() {
     let submit = document.getElementById('search-btn')
-    console.log(submit);
     submit.addEventListener('click', search);
-    //submit.onclick = search(evt);
 }
 
