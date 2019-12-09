@@ -59,6 +59,12 @@ function addCardHeadElements(card, cardHead, obj) {
     name.appendChild(document.createTextNode(obj['name']));
     cardHead.appendChild(name);
 
+    let del = document.createElement('div');
+    del.className = 'delete-btn';
+    del.appendChild(document.createTextNode('x'));
+    del.addEventListener('click', deleteCard);
+    cardHead.appendChild(del);
+
     let flag = document.createElement('img');
     flag.src = obj['flag'];
     cardHead.appendChild(flag);
@@ -73,6 +79,11 @@ function addCardHeadElements(card, cardHead, obj) {
     populateTable(infoTable, 'Capital', 'capital', obj);
 
     cardHead.appendChild(infoTable);
+}
+
+function deleteCard(evt) {
+    let card = evt.target.parentNode.parentNode;
+    card.parentNode.removeChild(card);
 }
 
 function populateTable(infoTable, attrName, attr, obj) {

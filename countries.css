@@ -134,6 +134,14 @@ div.container div.card-head h1 {
     margin-bottom: 10px;
 }
 
+div.container div.card-head div.delete-btn {
+    color: gray;
+}
+
+div.container div.card-head div.delete-btn:hover {
+    cursor: pointer;
+}
+
 div.container img {
     width: 90%;
     border: black solid 2px;
