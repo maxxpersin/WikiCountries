@@ -91,7 +91,7 @@ header>div>label {
 }
 
 footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     background-color: tan;
     width: 100vw;
@@ -100,4 +100,31 @@ footer {
 
 footer>div {
     margin-left: 1em;
+}
+
+div.buffer { 
+    height: 25px;
+    width: 100vw;
+}
+
+div.container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+div.container div.card {
+    width: 30vw;
+    background-color: wheat;
+    margin: 15px;
+    text-align: center;
+}
+
+div.container div.card-head {
+    width: 80%;
+}
+
+div.container img {
+    width: 90%;
+    border: black solid 2px;
 }

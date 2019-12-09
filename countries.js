@@ -32,16 +32,58 @@ function addDropDown(obj) {
 }
 
 function addCountryCard(obj) {
+    console.log(obj);
     let card = document.createElement('div');
+    card.className = 'card';
     document.getElementsByClassName('container')[0].appendChild(card);
 
+    let cardHead = document.createElement('div');
+    cardHead.class = 'card-head';
+    card.appendChild(cardHead);
+    addCardHeadElements(card, cardHead, obj);
+
+    let wikiArticles = document.createElement('div');
+    wikiArticles.class = 'wiki-articles';
+    card.appendChild(wikiArticles);
     //TODO add styling and proper html structure to cards
-    for (let key in obj) {
-        let container = document.createElement('div');
-        let text = document.createTextNode(key + ": " + obj[key]);
-        container.appendChild(text);
-        card.appendChild(container);
-    }
+    // for (let key in obj) {
+    //     let container = document.createElement('div');
+    //     let text = document.createTextNode(key + ": " + obj[key]);
+    //     container.appendChild(text);
+    //     card.appendChild(container);
+    // }
+}
+
+function addCardHeadElements(card, cardHead, obj) {
+    let name = document.createElement('h1');
+    name.appendChild(document.createTextNode(obj['name']));
+    cardHead.appendChild(name);
+
+    let flag = document.createElement('img');
+    flag.src = obj['flag'];
+    cardHead.appendChild(flag);
+
+    let infoTable = document.createElement('table');
+    populateTable(infoTable, 'population', obj);
+    populateTable(infoTable, 'nativeName', obj);
+    populateTable(infoTable, 'countryCode', obj);
+    populateTable(infoTable, 'callingCodes', obj);
+    populateTable(infoTable, 'region', obj);
+    populateTable(infoTable, 'subregion', obj);
+    populateTable(infoTable, 'capital', obj);
+
+    cardHead.appendChild(infoTable);
+}
+
+function populateTable(infoTable, attr, obj) {
+    let tr = document.createElement('tr');
+    let th = document.createElement('th');
+    let td = document.createElement('td');
+    tr.appendChild(th);
+    th.appendChild(document.createTextNode(attr));
+    td.appendChild(document.createTextNode(obj[attr]));
+    tr.appendChild(td);
+    infoTable.appendChild(tr);
 }
 
 function saveCountry(evt) {
