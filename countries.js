@@ -43,13 +43,13 @@ function addCountryCard(obj) {
     addCardHeadElements(card, cardHead, obj);
 
     let wikiArticles = document.createElement('div');
-    wikiArticles.class = 'wiki-articles';
+    wikiArticles.className = 'wiki-articles';
     card.appendChild(wikiArticles);
 
     let check = document.getElementById('show-wiki');
-    if (!check.checked) {
-        wikiArticles.style.display = 'hidden';
-    } 
+    // if (!check.checked) {
+    //     wikiArticles.style.visibility = 'hidden';
+    // } 
 
     addWikiElements(card, wikiArticles, obj);
     //TODO add styling and proper html structure to cards
@@ -128,6 +128,22 @@ function saveCountry(evt) {
             addCountryCard(obj[0]);
         }
     });
+
+    $.ajax({
+        url: 'https://en.wikipedia.org/w/api.php',
+        method: 'GET',
+        data: {
+            origin: '*',
+            action: 'query',
+            format: 'json',
+            list: 'search',
+            prop: 'links',
+            srsearch: selected + ',sports',
+        },
+        success: function(obj) {
+            console.log(obj);
+        }
+    });
 }
 
 function search(evt) {
@@ -160,6 +176,20 @@ function search(evt) {
 
 }
 
+function toggleWiki(evt) {
+    let cardList = document.getElementsByClassName('wiki-articles');
+
+    for (obj in cardList) {
+        if (cardList[obj].style) {
+            if (evt.target.checked) {
+                cardList[obj].style.visibility = 'visible';
+            } else {
+                cardList[obj].style.visibility = 'hidden';
+            }
+        }
+    }
+}
+
 function noCountriesAlert() {
     let container = document.getElementById('search');
 
@@ -177,5 +207,8 @@ function noCountriesAlert() {
 function setEvents() {
     let submit = document.getElementById('search-btn')
     submit.addEventListener('click', search);
+
+    let checkbox = document.getElementById('show-wiki');
+    checkbox.addEventListener('click', toggleWiki);
 }
 
