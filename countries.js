@@ -46,12 +46,33 @@ function addCountryCard(obj) {
     wikiArticles.className = 'wiki-articles';
     card.appendChild(wikiArticles);
 
-    let check = document.getElementById('show-wiki');
+    let selected = document.getElementById('country-choices');
+    selected = selected.options[selected.selectedIndex].value;
+    selected = selected.toLowerCase();
+    selected = selected.split(' ').join('%20');
+
+    $.ajax({
+        url: 'https://en.wikipedia.org/w/api.php',
+        method: 'GET',
+        data: {
+            origin: '*',
+            action: 'query',
+            format: 'json',
+            list: 'search',
+            prop: 'links',
+            srsearch: selected + ',sports',
+        },
+        success: function (obj) {
+            addWikiElements(card, wikiArticles, obj);
+        }
+    });
+
+    //let check = document.getElementById('show-wiki');
     // if (!check.checked) {
     //     wikiArticles.style.visibility = 'hidden';
     // } 
 
-    addWikiElements(card, wikiArticles, obj);
+    //addWikiElements(card, wikiArticles, obj);
     //TODO add styling and proper html structure to cards
     // for (let key in obj) {
     //     let container = document.createElement('div');
@@ -65,6 +86,11 @@ function addWikiElements(card, wikiArticles, obj) {
     let head = document.createElement('h1');
     head.appendChild(document.createTextNode('Wikipedia Articles'));
     wikiArticles.appendChild(head);
+   
+    obj.query.search.forEach(res => {
+        console.log(res.snippet);
+        $(JSON.stringify(res.snippet)).appendTo($(wikiArticles));
+    });
 }
 
 function addCardHeadElements(card, cardHead, obj) {
@@ -129,21 +155,7 @@ function saveCountry(evt) {
         }
     });
 
-    $.ajax({
-        url: 'https://en.wikipedia.org/w/api.php',
-        method: 'GET',
-        data: {
-            origin: '*',
-            action: 'query',
-            format: 'json',
-            list: 'search',
-            prop: 'links',
-            srsearch: selected + ',sports',
-        },
-        success: function(obj) {
-            console.log(obj);
-        }
-    });
+
 }
 
 function search(evt) {
