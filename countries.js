@@ -66,20 +66,6 @@ function addCountryCard(obj) {
             addWikiElements(card, wikiArticles, obj);
         }
     });
-
-    //let check = document.getElementById('show-wiki');
-    // if (!check.checked) {
-    //     wikiArticles.style.visibility = 'hidden';
-    // } 
-
-    //addWikiElements(card, wikiArticles, obj);
-    //TODO add styling and proper html structure to cards
-    // for (let key in obj) {
-    //     let container = document.createElement('div');
-    //     let text = document.createTextNode(key + ": " + obj[key]);
-    //     container.appendChild(text);
-    //     card.appendChild(container);
-    // }
 }
 
 function addWikiElements(card, wikiArticles, obj) {
@@ -88,8 +74,6 @@ function addWikiElements(card, wikiArticles, obj) {
     wikiArticles.appendChild(head);
 
     obj.query.search.forEach(res => {
-        console.log(res);
-        // let snippet = res.snippet;
         let container = document.createElement('div');
         container.className = 'wiki-info';
         wikiArticles.appendChild(container);
@@ -97,6 +81,10 @@ function addWikiElements(card, wikiArticles, obj) {
         $(`<h2><a href="http://en.wikipedia.org/?curid=${res.pageids}">${res.title}</a></h2>`).appendTo(container);
         $(`<p>${res.snippet}</p>`).appendTo($(container));
     });
+
+    if (!document.getElementById('show-wiki').checked){
+        wikiArticles.style.visibility = 'hidden';
+    }
 }
 
 function addCardHeadElements(card, cardHead, obj) {

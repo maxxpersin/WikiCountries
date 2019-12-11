@@ -108,12 +108,15 @@ div.buffer {
 }
 
 div.container {
-    display: flex;
+    /* display: flex;
     justify-content: space-evenly;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
+    /*display: inline-block;*/
 }
 
 div.container div.card {
+    display: inline-block;
+    vertical-align: top;
     width: 30vw;
     background-color: wheat;
     margin: 15px;
@@ -178,6 +181,10 @@ div.card div.wiki-articles {
     display: inline-block;
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+div.card div.wiki-articles h1 {
+    padding-left: 20px;
 }
 
 div.card div.wiki-info {
