@@ -118,7 +118,7 @@ div.container div.card {
     background-color: wheat;
     margin: 15px;
     align-content: center;
-    border-radius: 2%;
+    border-radius: 8px;
     box-shadow: 3px 3px 8px rgb(75, 75, 75);
     overflow: hidden;
 }
@@ -172,4 +172,20 @@ div.container table th {
 div.container table td {
     margin-left: 50px;
     text-align: left;
+}
+
+div.card div.wiki-articles {
+    display: inline-block;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+div.card div.wiki-info {
+    background-color: white;
+    position: relative;
+    left: 2.5%;
+    width: 90%;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
 }
