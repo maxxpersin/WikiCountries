@@ -86,10 +86,16 @@ function addWikiElements(card, wikiArticles, obj) {
     let head = document.createElement('h1');
     head.appendChild(document.createTextNode('Wikipedia Articles'));
     wikiArticles.appendChild(head);
-   
+
     obj.query.search.forEach(res => {
-        console.log(res.snippet);
-        $(JSON.stringify(res.snippet)).appendTo($(wikiArticles));
+        console.log(res);
+        // let snippet = res.snippet;
+        let container = document.createElement('div');
+        container.className = 'wiki-info';
+        wikiArticles.appendChild(container);
+
+        $(`<h2><a href="http://en.wikipedia.org/?curid=${res.pageids}">${res.title}</a></h2>`).appendTo(container);
+        $(`<p>${res.snippet}</p>`).appendTo($(container));
     });
 }
 
