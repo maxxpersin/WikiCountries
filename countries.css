@@ -100,6 +100,8 @@ footer {
 
 footer>div {
     margin-left: 1em;
+    color: rgb(100, 100, 100);
+    margin-top: 5px;
 }
 
 div.buffer { 
@@ -108,10 +110,7 @@ div.buffer {
 }
 
 div.container {
-    /* display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap; */
-    /*display: inline-block;*/
+    background-color: lightgray;
 }
 
 div.container div.card {
@@ -133,7 +132,7 @@ div.container div.card-head {
 div.container div.card-head h1 {
     float: left;
     margin-left: 25px;
-    font-size: 1.75em;
+    font-size: 1.5em;
     margin-top: 25px;
     margin-bottom: 10px;
 }
@@ -141,12 +140,13 @@ div.container div.card-head h1 {
 div.container div.card-head div.delete-btn {
     color: gray;
     float: right;
-    margin-right: 30px;
-    margin-top: 25px;
+    margin-right: 15px;
+    margin-top: 10px;
 }
 
 div.container div.card-head div.delete-btn:hover {
     cursor: pointer;
+    color: black;
 }
 
 div.container img {

@@ -32,7 +32,6 @@ function addDropDown(obj) {
 }
 
 function addCountryCard(obj) {
-    console.log(obj);
     let card = document.createElement('div');
     card.className = 'card';
     document.getElementsByClassName('container')[0].appendChild(card);
@@ -42,30 +41,34 @@ function addCountryCard(obj) {
     card.appendChild(cardHead);
     addCardHeadElements(card, cardHead, obj);
 
-    let wikiArticles = document.createElement('div');
-    wikiArticles.className = 'wiki-articles';
-    card.appendChild(wikiArticles);
+    if (document.getElementById('show-wiki').checked) {
+        let wikiArticles = document.createElement('div');
+        wikiArticles.className = 'wiki-articles';
+        card.appendChild(wikiArticles);
 
-    let selected = document.getElementById('country-choices');
-    selected = selected.options[selected.selectedIndex].value;
-    selected = selected.toLowerCase();
-    selected = selected.split(' ').join('%20');
 
-    $.ajax({
-        url: 'https://en.wikipedia.org/w/api.php',
-        method: 'GET',
-        data: {
-            origin: '*',
-            action: 'query',
-            format: 'json',
-            list: 'search',
-            prop: 'links',
-            srsearch: selected + ',sports',
-        },
-        success: function (obj) {
-            addWikiElements(card, wikiArticles, obj);
-        }
-    });
+        let selected = document.getElementById('country-choices');
+        selected = selected.options[selected.selectedIndex].value;
+        selected = selected.toLowerCase();
+        selected = selected.split(' ').join('%20');
+
+
+        $.ajax({
+            url: 'https://en.wikipedia.org/w/api.php',
+            method: 'GET',
+            data: {
+                origin: '*',
+                action: 'query',
+                format: 'json',
+                list: 'search',
+                prop: 'links',
+                srsearch: selected + ',sports',
+            },
+            success: function (obj) {
+                addWikiElements(card, wikiArticles, obj);
+            }
+        });
+    }
 }
 
 function addWikiElements(card, wikiArticles, obj) {
@@ -78,11 +81,11 @@ function addWikiElements(card, wikiArticles, obj) {
         container.className = 'wiki-info';
         wikiArticles.appendChild(container);
 
-        $(`<h2><a href="http://en.wikipedia.org/?curid=${res.pageids}">${res.title}</a></h2>`).appendTo(container);
-        $(`<p>${res.snippet}</p>`).appendTo($(container));
+        $(`<h2><a href="http://en.wikipedia.org/?curid=${res.pageid}">${res.title}</a></h2>`).appendTo(container);
+        $(`<p>${res.snippet}...</p>`).appendTo($(container));
     });
 
-    if (!document.getElementById('show-wiki').checked){
+    if (!document.getElementById('show-wiki').checked) {
         wikiArticles.style.visibility = 'hidden';
     }
 }
@@ -183,16 +186,36 @@ function search(evt) {
 }
 
 function toggleWiki(evt) {
-    let cardList = document.getElementsByClassName('wiki-articles');
+    let cardList = document.getElementsByClassName('card');
 
     for (obj in cardList) {
-        if (cardList[obj].style) {
-            if (evt.target.checked) {
-                cardList[obj].style.visibility = 'visible';
-            } else {
-                cardList[obj].style.visibility = 'hidden';
-            }
+        if (evt.target.checked) {
+            let selected = cardList[obj].firstChild.firstChild.firstChild.data;
+            selected = selected.split(' ').join('%20');
+
+            let wikiArticles = document.createElement('div');
+            wikiArticles.className = 'wiki-articles';
+            cardList[obj].appendChild(wikiArticles);
+
+            $.ajax({
+                url: 'https://en.wikipedia.org/w/api.php',
+                method: 'GET',
+                data: {
+                    origin: '*',
+                    action: 'query',
+                    format: 'json',
+                    list: 'search',
+                    prop: 'links',
+                    srsearch: selected + ',sports',
+                },
+                success: function (obj) {
+                    addWikiElements(cardList[obj], wikiArticles, obj);
+                }
+            });
+        } else {
+            cardList[obj].removeChild(cardList[obj].lastChild);
         }
+        //     }
     }
 }
 
