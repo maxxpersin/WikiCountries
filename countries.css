@@ -183,7 +183,7 @@ div.card div.wiki-articles h1 {
     padding-left: 20px;
 }
 
-div.card div.wiki-info {
+div.card article.wiki-info {
     background-color: white;
     position: relative;
     left: 2.5%;
@@ -192,7 +192,7 @@ div.card div.wiki-info {
     margin: 7px;
 }
 
-div.card div.wiki-info h2 {
+div.card article.wiki-info h2 {
     background-color: lightgray;
     padding: 8px 8px 8px 8px;
     font-size: 1.25em;
@@ -200,6 +200,10 @@ div.card div.wiki-info h2 {
     border-top-right-radius: 5px;
 }
 
-div.card div.wiki-info p {
+div.card article.wiki-info a {
+    text-decoration: none;
+}
+
+div.card article.wiki-info p {
     padding: 15px;
 }

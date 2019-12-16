@@ -72,22 +72,23 @@ function addCountryCard(obj) {
 }
 
 function addWikiElements(card, wikiArticles, obj) {
+
     let head = document.createElement('h1');
     head.appendChild(document.createTextNode('Wikipedia Articles'));
     wikiArticles.appendChild(head);
 
     obj.query.search.forEach(res => {
-        let container = document.createElement('div');
+        let container = document.createElement('article');
         container.className = 'wiki-info';
         wikiArticles.appendChild(container);
 
-        $(`<h2><a href="http://en.wikipedia.org/?curid=${res.pageid}">${res.title}</a></h2>`).appendTo(container);
+        $(`<a target="_blank" href="http://en.wikipedia.org/?curid=${res.pageid}"><h2>${res.title}</h2></a>`).appendTo(container);
         $(`<p>${res.snippet}...</p>`).appendTo($(container));
     });
 
-    if (!document.getElementById('show-wiki').checked) {
-        wikiArticles.style.visibility = 'hidden';
-    }
+    // if (!document.getElementById('show-wiki').checked) {
+    //     wikiArticles.style.visibility = 'hidden';
+    // }
 }
 
 function addCardHeadElements(card, cardHead, obj) {
@@ -196,6 +197,7 @@ function toggleWiki(evt) {
             let wikiArticles = document.createElement('div');
             wikiArticles.className = 'wiki-articles';
             cardList[obj].appendChild(wikiArticles);
+            
 
             $.ajax({
                 url: 'https://en.wikipedia.org/w/api.php',
@@ -208,8 +210,8 @@ function toggleWiki(evt) {
                     prop: 'links',
                     srsearch: selected + ',sports',
                 },
-                success: function (obj) {
-                    addWikiElements(cardList[obj], wikiArticles, obj);
+                success: function (ret) {
+                    addWikiElements(cardList[obj], wikiArticles, ret);
                 }
             });
         } else {
